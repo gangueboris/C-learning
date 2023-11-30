@@ -1,6 +1,6 @@
+#include "header.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #define VIDE 0
 #define DECOUVERTE 1
 #define TRESOR_CACHE 2
@@ -83,7 +83,8 @@ void AfficherDistance(int x1, int y1, int x2, int y2){
 }
 
 // Fonction d’affichage des informations de direction
-void AfficherInformations(int x1, int y1, int x2, int y2){
+void AfficherInformations(int x1, int y1, int x2, int y2)
+{
     int x1x2 ,y1y2;
     int x_diff = x2 - x1;
     int y_diff = y2 - y1;
@@ -111,40 +112,4 @@ void AfficherInformations(int x1, int y1, int x2, int y2){
     } else if (x_diff < 0 && y_diff < 0 && x2 != 19 && y2 != 19) {
         printf("Le tresor se trouve en haut a gauche\n");
     }
-}
-
-
-
-int main()
-{
-    int grille[TAILLE_GRILLE][TAILLE_GRILLE] ;
-    int ligne;
-    int colonne;
-    int positionX;
-    int positionY;
-    InitialiserGrille(grille);
-   // AffichageGrille(grille);
-   //DemanderLigneColonne(&ligne,&colonne);
-   //printf("ligne:%d \n colonne:%d\n",ligne,colonne);
-
-   // Initialisation des positions
-   srand(time(NULL));
-   positionX = rand()%20 ;
-   positionY = rand()%20 ;
-   //printf("%d %d",positionX,positionY);
-   
-   // Utilisation de la fonction cacherTresor
-   CacherTresor(grille,&positionX,&positionY);
-   // Utilisation de la fonction AfficherDistance
-   AfficherDistance(1,8,7,5);
-   AfficherInformations(8,9,positionX,positionY);
-
-
-
-   
-    
-
-
-
-    return 0 ;
 }
