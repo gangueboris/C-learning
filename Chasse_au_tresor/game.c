@@ -78,23 +78,39 @@ void CacherTresor(int grille[TAILLE_GRILLE][TAILLE_GRILLE], int* positionX, int*
 void AfficherDistance(int x1, int y1, int x2, int y2){
     int distance = abs(x2 - x1) + abs(y2 - y1);
     printf("---------------\n");
-    printf("| Distance: %d |\n",distance);    
+    printf("| Distance: %d |\n",distance);  
+    printf("---------------\n");  
 }
 
 // Fonction d’affichage des informations de direction
 void AfficherInformations(int x1, int y1, int x2, int y2){
     int x1x2 ,y1y2;
-    x1x2 = x2 - x1 ;
-    y1y2 = y2 - y1;
-   
-    if(x1x2 > 0) printf("Le tresor se trouve a droite\n");
-    else printf("Le tresor se trouve a gauche\n");
-    if(y1y2 > 0) printf("Le tresor se trouve en bas\n");
-    else printf("Le tresor se trouve en haut\n");
-    if(x1x2 > 0 && y1y2 > 0) printf("Le tresor se trouve en haut à droite");
-    else printf("Le tresor se trouve en bas à gauche");
-    
-    
+    int x_diff = x2 - x1;
+    int y_diff = y2 - y1;
+
+    printf(" -----------\n");
+    printf("| Direction |\n");
+    printf(" -----------\n");
+
+    if (x_diff > 0 && x2 != 19 && y_diff == 0) {
+        printf("Le tresor se trouve a droite\n");
+    } else if (x_diff < 0 && x2 != 19 && y_diff == 0) {
+        printf("Le tresor se trouve a gauche\n");
+    }
+
+    if (y_diff > 0 && y2 != 19 && x_diff == 0) {
+        printf("Le tresor se trouve en bas\n");
+    } else if (y_diff < 0 && y2 != 19 && x_diff == 0) {
+        printf("Le tresor se trouve en haut\n");
+    }
+
+    if (x_diff > 0 && y_diff > 0) {
+        printf("Le tresor se trouve en bas a droite\n");
+    } else if (x_diff < 0 && y_diff > 0 && x2 != 19 && y2 != 19) {
+        printf("Le tresor se trouve en bas a gauche\n");
+    } else if (x_diff < 0 && y_diff < 0 && x2 != 19 && y2 != 19) {
+        printf("Le tresor se trouve en haut a gauche\n");
+    }
 }
 
 
@@ -121,7 +137,7 @@ int main()
    CacherTresor(grille,&positionX,&positionY);
    // Utilisation de la fonction AfficherDistance
    AfficherDistance(1,8,7,5);
-   AfficherInformations(3,4,1,1);
+   AfficherInformations(8,9,positionX,positionY);
 
 
 
