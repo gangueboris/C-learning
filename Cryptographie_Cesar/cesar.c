@@ -43,7 +43,7 @@ int calculerCle(int*tabFrequence){
     int valMax = 0 ;
     int indexVal = 0 ;
     int cleDecalage ;
-    // Trouver l'indice de la lettre la plus fréquente dans le tableau de fréquence
+    // Trouver l'indice de la lettre la plus fréquente dans le tableau de fréquence.
     for(int i  = 0 ; i < NB_LETTRES; i++){
         if(valMax < tabFrequence[i]){
             valMax = tabFrequence[i] ;
