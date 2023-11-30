@@ -82,7 +82,18 @@ void AfficherDistance(int x1, int y1, int x2, int y2){
 }
 
 // Fonction d’affichage des informations de direction
-void AfficherInformations (int x1, int y1, int x2, int y2){
+void AfficherInformations(int x1, int y1, int x2, int y2){
+    int x1x2 ,y1y2;
+    x1x2 = x2 - x1 ;
+    y1y2 = y2 - y1;
+   
+    if(x1x2 > 0) printf("Le tresor se trouve a droite\n");
+    else printf("Le tresor se trouve a gauche\n");
+    if(y1y2 > 0) printf("Le tresor se trouve en bas\n");
+    else printf("Le tresor se trouve en haut\n");
+    if(x1x2 > 0 && y1y2 > 0) printf("Le tresor se trouve en haut à droite");
+    else printf("Le tresor se trouve en bas à gauche");
+    
     
 }
 
@@ -110,6 +121,7 @@ int main()
    CacherTresor(grille,&positionX,&positionY);
    // Utilisation de la fonction AfficherDistance
    AfficherDistance(1,8,7,5);
+   AfficherInformations(3,4,1,1);
 
 
 
