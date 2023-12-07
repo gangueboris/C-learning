@@ -14,7 +14,7 @@ void InitialiserGrille(int grille[TAILLE_GRILLE][TAILLE_GRILLE])
     {
         for(int j = 0;  j < TAILLE_GRILLE ; j++)
         {
-            grille[i][j] = 0;
+            grille[i][j] = VIDE;
             
         }
     }
@@ -22,35 +22,37 @@ void InitialiserGrille(int grille[TAILLE_GRILLE][TAILLE_GRILLE])
 
 //Fonction d'affichage de la grille
 void AffichageGrille(int grille[TAILLE_GRILLE][TAILLE_GRILLE])
-{
+{   printf(" --------------\n");
+    printf("| Grille de jeu |\n");
+    printf(" --------------\n");
     for(int i = 0 ; i < TAILLE_GRILLE; i++)
     {
         for(int j = 0;  j < TAILLE_GRILLE ; j++)
         {
             switch (grille[i][j])
             {
-            case 0:
+            case VIDE:
                 printf("X ");
-                if(j == 19) printf("\n");
+                if(j == 19) ;
                 break;
-            case 1:
+            case DECOUVERTE:
                 printf("  ");
-                if(j == 19) printf("\n");
+                if(j == 19) ;
                 break;
-            case 2:
+            case TRESOR_CACHE:
                 printf("X ");
-                if(j == 19) printf("\n");
+                if(j == 19) ;
                 break;
-            case 3:
+            case TRESOR_DECOUVERT:
                 printf("$ ");
-                if(j == 19) printf("\n");
+                if(j == 19) ;
                 break;
             
             default:
                 break;
             }
-
         }
+        printf("\n");
     }
 }
 
@@ -59,7 +61,7 @@ void DemanderLigneColonne(int* ligne, int* colonne)
 {
     do
     {
-        printf("Entrer la prochaine colonne a jouer ? ");
+        printf("\nEntrer la prochaine colonne a jouer ? ");
         scanf(" %d",colonne);
         printf("Entrer la prochaine ligne a jouer ? ");
         scanf(" %d",ligne);
@@ -77,15 +79,16 @@ void CacherTresor(int grille[TAILLE_GRILLE][TAILLE_GRILLE], int* positionX, int*
 // Fonction d'affichage de la distance
 void AfficherDistance(int x1, int y1, int x2, int y2){
     int distance = abs(x2 - x1) + abs(y2 - y1);
-    printf("---------------\n");
-    printf("| Distance: %d |\n",distance);  
-    printf("---------------\n");  
+    printf(" ------------\n");
+    printf("| Distance: |\n");  
+    printf(" ------------\n");
+    printf("Le tresor se trouve a une distance d'environ %d cases.\n",distance);
+  
 }
 
 // Fonction d’affichage des informations de direction
 void AfficherInformations(int x1, int y1, int x2, int y2)
 {
-    int x1x2 ,y1y2;
     int x_diff = x2 - x1;
     int y_diff = y2 - y1;
 
@@ -93,23 +96,23 @@ void AfficherInformations(int x1, int y1, int x2, int y2)
     printf("| Direction |\n");
     printf(" -----------\n");
 
-    if (x_diff > 0 && x2 != 19 && y_diff == 0) {
+    if (x_diff > 0 && x2 < TAILLE_GRILLE && y_diff == 0) {
         printf("Le tresor se trouve a droite\n");
-    } else if (x_diff < 0 && x2 != 19 && y_diff == 0) {
+    } else if (x_diff < 0 && x2 < TAILLE_GRILLE && y_diff == 0) {
         printf("Le tresor se trouve a gauche\n");
     }
 
-    if (y_diff > 0 && y2 != 19 && x_diff == 0) {
+    if (y_diff > 0 && y2 < TAILLE_GRILLE && x_diff == 0) {
         printf("Le tresor se trouve en bas\n");
-    } else if (y_diff < 0 && y2 != 19 && x_diff == 0) {
+    } else if (y_diff < 0 && y2 < TAILLE_GRILLE && x_diff == 0) {
         printf("Le tresor se trouve en haut\n");
     }
 
     if (x_diff > 0 && y_diff > 0) {
         printf("Le tresor se trouve en bas a droite\n");
-    } else if (x_diff < 0 && y_diff > 0 && x2 != 19 && y2 != 19) {
+    } else if (x_diff < 0 && y_diff > 0 && x2 < TAILLE_GRILLE && y2 < TAILLE_GRILLE) {
         printf("Le tresor se trouve en bas a gauche\n");
-    } else if (x_diff < 0 && y_diff < 0 && x2 != 19 && y2 != 19) {
+    } else if (x_diff < 0 && y_diff < 0 && x2 < TAILLE_GRILLE && y2 < TAILLE_GRILLE) {
         printf("Le tresor se trouve en haut a gauche\n");
     }
 }
