@@ -24,12 +24,14 @@ struct s_resto SaisirResto(){
        do{
        printf("Saisir la qualite du restaurant (1 - 10):\n");
        scanf(" %d",&new_resto.qualite);
+       fgetc(stdin);
        break;
        }while(new_resto.qualite < 1 || new_resto.qualite > 10);
 
        do{
        printf("Saisir la distance qui vous separe du restaurant en km:\n");
        scanf(" %d",&new_resto.distance) ;
+       fgetc(stdin);
        break ;
        }while(new_resto.distance < 0);
        new_resto.temps = 999; 
@@ -53,10 +55,7 @@ void AfficherRestos (struct s_resto tableauRestos[N], int nombreRestos){
     }
 
 }
-//
-int chercherRestos(struct s_resto tableauRestos[N], int nombreRestos){
 
-}
 int min(int x, int y){
     return x < y ? x : y;
 }
@@ -64,6 +63,16 @@ int min(int x, int y){
 int max(int x, int y) {
     return x > y ? x : y;
 }
+int chercherRestos(struct s_resto tableauRestos[N], int nombreRestos){
+    int q ,d,t ;
+    for(int i = 0 ; i < nombreRestos; i++){
+        q = tableauRestos[i].qualite ;
+        d = tableauRestos[i].distance ;
+        t = tableauRestos[i].temps ;
+    }
+
+}
+
 
 int main(){
     struct s_resto tableauRestos[N];
@@ -71,6 +80,7 @@ int main(){
 
     printf("Saisir le nombre de restaurant:\n");
     scanf(" %d",&nombreRestos);
+    fgetc(stdin);
     SaisirRestos(tableauRestos,&nombreRestos);
     AfficherRestos(tableauRestos,nombreRestos);
      
