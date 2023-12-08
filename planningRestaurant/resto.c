@@ -4,8 +4,6 @@
 #include <math.h>
 #define MAX_VALUE 100
 #define N 20
-#define MIN(x, y) ((x) < (y) ? (x) : (y))
-#define MAX(x, y) ((x) > (y) ? (x) : (y))
 
 
 struct s_resto{
@@ -63,32 +61,55 @@ int min(int x, int y){
 int max(int x, int y) {
     return x > y ? x : y;
 }
+// 4 -
 int chercherRestos(struct s_resto tableauRestos[N], int nombreRestos){
-    int q ,d,t ;
+    int q ,d,t ,id ;
+    float attraitMax = 0 ,attrait;
     for(int i = 0 ; i < nombreRestos; i++){
         q = tableauRestos[i].qualite ;
         d = tableauRestos[i].distance ;
         t = tableauRestos[i].temps ;
+        attrait = max(0,q - pow(d,2) + pow(min(t, 10),2));
+        if (attrait > attraitMax){ // Verifier quelle est la valeur la plus grande dans un tableau
+            id = i;
+            attraitMax = attrait;
+        }
     }
-
+     return id ;
 }
 
+// 5 - Etablissement du planning
+void planning(struct s_resto tableauRestos[N], int nombreRestos){;
+     int id ;
+      printf("_________Planning________\n");
+    //printf("\nPlanning des prochains restaurants sur 20 jours :\n");
+    for (int i = 0; i < 20; i++) {
+        int id_ = chercherRestos(tableauRestos, nombreRestos);
+        printf("%d %s\n", i, tableauRestos[id_].nom);
+		tableauRestos[id_].temps = 0;
+
+		for (int j = 0; j < nombreRestos; j++) {
+			if (j != id_ ) {
+				tableauRestos[j].temps++;
+			}
+    	}
+    }
+}
 
 int main(){
     struct s_resto tableauRestos[N];
-    int nombreRestos;
+    int nombreRestos, id;
 
     printf("Saisir le nombre de restaurant:\n");
     scanf(" %d",&nombreRestos);
     fgetc(stdin);
     SaisirRestos(tableauRestos,&nombreRestos);
     AfficherRestos(tableauRestos,nombreRestos);
+    id = chercherRestos(tableauRestos,nombreRestos) ;
+    printf("nb : %d\n",nombreRestos );
+    //printf("id : %d\n",id);
+    printf("Le prochain restaurant a visiter est:%s\n",tableauRestos[id].nom);
+    planning(tableauRestos,nombreRestos);
      
-
-
-
-
-
-
     return 0;
 }
