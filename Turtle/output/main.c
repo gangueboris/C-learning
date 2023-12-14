@@ -70,7 +70,7 @@ void bande(int x, int y ,int nbbande ,int color[2][3]){
     for(int j = 0 ; j < nbbande; j++){
         for(int i = 0 ; i < nbbande ;i++){
             if(i%2 == 0) couleur = 0 ;    
-            else couleur =1 ;
+            else couleur = 1 ;
             carre(x,y,COTE,color[couleur]); 
             x += COTE ;
         }
